@@ -1,3 +1,5 @@
+package level0;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,13 +15,13 @@ class NumbersTest {
         Numbers numbers;
 
         {
-            Number num1 = new Number(1);
-            Number num2 = new Number(2);
-            Number num3 = new Number(3);
+            level0.Number num1 = new level0.Number(1);
+            level0.Number num2 = new level0.Number(2);
+            Number num3 = new level0.Number(3);
 
             numbers = new Numbers(num1, num2, num3);
         }
 
-        assertThat(numbers.getSum()).isEqualTo(new Number(sum));
+        assertThat(numbers.getSum()).isEqualTo(new level0.Number(sum));
     }
 }

@@ -1,3 +1,5 @@
+package level0;
+
 import java.util.Objects;
 
 public class Number {
@@ -43,5 +45,12 @@ public class Number {
     @Override
     public int hashCode() {
         return Objects.hashCode(value);
+    }
+
+    @Override
+    public String toString() {
+        return "level0.Number{" +
+               "value=" + value +
+               '}';
     }
 }
