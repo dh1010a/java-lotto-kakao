@@ -3,6 +3,7 @@ package level1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomLotteryGenerator {
@@ -10,11 +11,10 @@ public class RandomLotteryGenerator {
     private static final List<Integer> randomNumberList;
 
     static {
-        randomNumberList = new ArrayList<>(
-                IntStream.rangeClosed(
+        randomNumberList = IntStream.rangeClosed(
                         Constant.LOTTERY_MIN_VALUE, Constant.LOTTERY_MAX_VALUE
-                ).boxed().toList()
-        );
+                )
+                .boxed().collect(Collectors.toList());
     }
 
     public Lotteries generate(int num) {
