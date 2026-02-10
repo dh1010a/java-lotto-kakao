@@ -44,4 +44,8 @@ public class Lottery {
 
         return num;
     }
+
+    public boolean contains(int given) {
+        return this.lottery.contains(given);
+    }
 }

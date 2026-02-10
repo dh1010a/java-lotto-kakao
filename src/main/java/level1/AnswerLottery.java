@@ -16,7 +16,14 @@ public class AnswerLottery extends Lottery {
         }
     }
 
-    public int getBonusLotteryNumber() {
-        return bonusLotteryNumber;
+    public Match judge(Lottery givenLottery) {
+
+        long matchCount = this.lottery.stream()
+                .filter(givenLottery::contains)
+                .count();
+
+        boolean bonusBallMatch = givenLottery.contains(this.bonusLotteryNumber);
+
+        return Match.matchOf(matchCount, bonusBallMatch);
     }
 }
