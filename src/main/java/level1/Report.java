@@ -1,5 +1,6 @@
 package level1;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,8 +20,38 @@ public class Report {
         return matchCountMap.getMatchCount(match);
     }
 
-    public int getPrice() {
-        return price;
+    public String representReport() {
+        StringBuilder sb = new StringBuilder("당첨 통계\n---------\n");
+
+        appendMatchStatistics(sb);
+
+        sb.append(String.format(
+                "총 수익률은 %.2f입니다.(기준이 1이기 때문에 결과적으로 손해라는 의미임)",
+                calculateProfitRate()
+        ));
+
+        return sb.toString();
+    }
+
+    private void appendMatchStatistics(StringBuilder sb) {
+        List<Match> winningMatches = List.of(
+                Match.THREE, Match.FOUR, Match.FIVE, Match.FIVE_WITH_BONUS, Match.SIX
+        );
+
+        for (Match match : winningMatches) {
+            sb.append(String.format(
+                    "%s - %d개\n",
+                    match.getDescription(), matchCountMap.getMatchCount(match)
+            ));
+        }
+    }
+
+    private double calculateProfitRate() {
+        long totalPrize = Arrays.stream(Match.values())
+                .mapToLong(m -> (long) m.getPrize() * matchCountMap.getMatchCount(m))
+                .sum();
+
+        return (double) totalPrize / price;
     }
 
     private static class MatchCountMap {
