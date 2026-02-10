@@ -13,7 +13,7 @@ public class Lottery {
             LOTTERY_MIN_VALUE = 1,
             LOTTERY_MAX_VALUE = 45;
 
-    private final Set<Integer> lottery;
+    protected final Set<Integer> lottery;
 
     public Lottery(List<String> numbers) {
         Set<String> numberSet = new HashSet<>(numbers);
