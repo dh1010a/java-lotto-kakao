@@ -42,4 +42,12 @@ public class Lottery {
     public boolean contains(int given) {
         return this.lottery.contains(given);
     }
+
+    public String represent() {
+        List<Integer> sortedNumbers = lottery.stream()
+                .sorted()
+                .toList();
+
+        return sortedNumbers.toString();
+    }
 }
