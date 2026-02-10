@@ -7,12 +7,6 @@ import java.util.stream.Collectors;
 
 public class Lottery {
 
-    private static final int LOTTERY_SIZE = 6;
-
-    private static final int
-            LOTTERY_MIN_VALUE = 1,
-            LOTTERY_MAX_VALUE = 45;
-
     protected final Set<Integer> lottery;
 
     public Lottery(List<String> numbers) {
@@ -22,7 +16,7 @@ public class Lottery {
                 .map(this::parseNumber)
                 .collect(Collectors.toSet());
 
-        if (this.lottery.size() != LOTTERY_SIZE) {
+        if (this.lottery.size() != Constant.LOTTERY_SIZE) {
             throw new RuntimeException("숫자는 6 개여야 합니다.");
         }
     }
@@ -36,8 +30,8 @@ public class Lottery {
         }
 
         if (
-                num < LOTTERY_MIN_VALUE ||
-                num > LOTTERY_MAX_VALUE
+                num < Constant.LOTTERY_MIN_VALUE ||
+                num > Constant.LOTTERY_MAX_VALUE
         ) {
             throw new RuntimeException("로또 번호는 1 - 45 범위 숫자만 가능합니다.");
         }
