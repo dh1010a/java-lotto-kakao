@@ -21,22 +21,19 @@ public class Lottery {
         }
     }
 
-    protected int parseNumber(String number) {
-        int num;
+    protected int parseNumber(String stringNumber) {
+        int number;
         try {
-            num = Integer.parseInt(number);
+            number = Integer.parseInt(stringNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자가 아닌 값은 허용되지 않습니다.");
         }
 
-        if (
-                num < Constant.LOTTERY_MIN_VALUE ||
-                num > Constant.LOTTERY_MAX_VALUE
-        ) {
+        if (number < Constant.LOTTERY_MIN_VALUE || number > Constant.LOTTERY_MAX_VALUE) {
             throw new IllegalArgumentException("로또 번호는 1 - 45 범위 숫자만 가능합니다.");
         }
 
-        return num;
+        return number;
     }
 
     public boolean contains(int given) {

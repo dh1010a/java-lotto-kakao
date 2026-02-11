@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 public class Report {
 
-    private final int price;
+    private final Price price;
 
     private final MatchCountMap matchCountMap;
 
-    public Report(int price, AnswerLottery answerLottery, List<Lottery> lotteries) {
+    public Report(Price price, AnswerLottery answerLottery, List<Lottery> lotteries) {
         this.price = price;
         this.matchCountMap = new MatchCountMap(answerLottery, lotteries);
     }
@@ -51,7 +51,7 @@ public class Report {
                 .mapToLong(m -> (long) m.getPrize() * matchCountMap.getMatchCount(m))
                 .sum();
 
-        return (double) totalPrize / price;
+        return (double) totalPrize / price.value();
     }
 
     private static class MatchCountMap {

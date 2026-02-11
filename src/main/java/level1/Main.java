@@ -11,7 +11,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int price = inputHandler.inputPrice();
+        Price price = inputHandler.inputPrice();
 
         Lotteries userLotteries = purchaseLotteries(price);
 
@@ -26,8 +26,8 @@ public class Main {
         printResult(report);
     }
 
-    private static Lotteries purchaseLotteries(int price) {
-        int count = price / Constant.LOTTERY_PRICE;
+    private static Lotteries purchaseLotteries(Price price) {
+        int count = price.value() / Constant.LOTTERY_PRICE;
 
         System.out.println(count + "개를 구매했습니다.");
 
