@@ -13,18 +13,11 @@ public class InputHandler {
     }
 
     public int inputPrice() {
-        int price;
-
         System.out.println("구입금액을 입력해 주세요.");
-        try {
-            price = Integer.parseInt(scanner.nextLine());
-        } catch (Exception e) {
-            throw new IllegalArgumentException("올바르지 않은 형식입니다.");
-        }
+        String input = scanner.nextLine();
 
-        if (price < 1000) {
-            throw new IllegalStateException("1,000 원 이하는 구매할 수 없습니다.");
-        }
+        int price = parseToInt(input);
+        validatePriceUnit(price);
 
         return price;
     }
@@ -37,5 +30,19 @@ public class InputHandler {
         String bonusBall = scanner.nextLine();
 
         return new AnswerLottery(numbers, bonusBall);
+    }
+
+    private int parseToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        }
+    }
+
+    private void validatePriceUnit(int price) {
+        if (price < 1000) {
+            throw new IllegalArgumentException("1,000원 이상부터 구매가 가능합니다.");
+        }
     }
 }
