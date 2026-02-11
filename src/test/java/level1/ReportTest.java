@@ -23,7 +23,7 @@ class ReportTest {
                 new Lottery(List.of("10", "11", "12", "13", "14", "15"))    // 꽝
         );
 
-        Report report = new Report(3000, answerLottery, userLotteries);
+        Report report = new Report(new Price(3000), answerLottery, userLotteries);
 
         assertThat(report.getMatchCount(Match.SIX)).isEqualTo(1);
         assertThat(report.getMatchCount(Match.FIVE_WITH_BONUS)).isEqualTo(1);
@@ -38,7 +38,7 @@ class ReportTest {
                 new Lottery(List.of("10", "11", "12", "13", "14", "15"))
         );
 
-        Report report = new Report(1000, answerLottery, emptyLotteries);
+        Report report = new Report(new Price(3000), answerLottery, emptyLotteries);
 
         assertThatCode(() -> report.getMatchCount(Match.SIX))
                 .doesNotThrowAnyException();
