@@ -58,4 +58,8 @@ public enum Match {
     public String getDescription() {
         return description;
     }
+
+    public long calculateTotalPrize(int count) {
+        return (long) this.prize * count;
+    }
 }

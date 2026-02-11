@@ -48,7 +48,7 @@ public class Report {
 
     private double calculateProfitRate() {
         long totalPrize = Arrays.stream(Match.values())
-                .mapToLong(m -> (long) m.getPrize() * matchCountMap.getMatchCount(m))
+                .mapToLong(match -> match.calculateTotalPrize(getMatchCount(match)))
                 .sum();
 
         return (double) totalPrize / price.value();
