@@ -19,11 +19,11 @@ public class InputHandler {
         try {
             price = Integer.parseInt(scanner.nextLine());
         } catch (Exception e) {
-            throw new RuntimeException("올바르지 않은 형식입니다.");
+            throw new IllegalArgumentException("올바르지 않은 형식입니다.");
         }
 
         if (price < 1000) {
-            throw new RuntimeException("1,000 원 이하는 구매할 수 없습니다.");
+            throw new IllegalStateException("1,000 원 이하는 구매할 수 없습니다.");
         }
 
         return price;

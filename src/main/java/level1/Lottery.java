@@ -17,7 +17,7 @@ public class Lottery {
                 .collect(Collectors.toSet());
 
         if (this.lottery.size() != Constant.LOTTERY_SIZE) {
-            throw new RuntimeException("숫자는 6 개여야 합니다.");
+            throw new IllegalArgumentException("숫자는 6 개여야 합니다.");
         }
     }
 
@@ -26,14 +26,14 @@ public class Lottery {
         try {
             num = Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new RuntimeException("숫자가 아닌 값은 허용되지 않습니다.");
+            throw new IllegalArgumentException("숫자가 아닌 값은 허용되지 않습니다.");
         }
 
         if (
                 num < Constant.LOTTERY_MIN_VALUE ||
                 num > Constant.LOTTERY_MAX_VALUE
         ) {
-            throw new RuntimeException("로또 번호는 1 - 45 범위 숫자만 가능합니다.");
+            throw new IllegalArgumentException("로또 번호는 1 - 45 범위 숫자만 가능합니다.");
         }
 
         return num;

@@ -12,7 +12,7 @@ public class AnswerLottery extends Lottery {
         this.bonusLotteryNumber = super.parseNumber(bonusLottery);
 
         if (this.lottery.contains(bonusLotteryNumber)) {
-            throw new RuntimeException("보너스 볼은 기존 로또 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException("보너스 볼은 기존 로또 번호와 중복되지 않아야 합니다.");
         }
     }
 
