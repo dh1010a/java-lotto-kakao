@@ -36,6 +36,12 @@ public class Lottery {
         return this.lottery.contains(given);
     }
 
+    public int countMatchingNumbers(Lottery other) {
+        return (int) lottery.stream()
+                .filter(other::contains)
+                .count();
+    }
+
     public String represent() {
         return lottery.stream()
                 .sorted()
