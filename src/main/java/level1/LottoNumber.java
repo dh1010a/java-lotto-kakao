@@ -1,18 +1,32 @@
 package level1;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class LottoNumber implements Comparable<LottoNumber> {
 
     private final int value;
 
-    public LottoNumber(String stringNumber) {
-        this(parse(stringNumber));
+    private static final Map<Integer, LottoNumber> CACHE = new HashMap<>();
+
+    static {
+        IntStream.rangeClosed(Constant.LOTTERY_MIN_VALUE, Constant.LOTTERY_MAX_VALUE)
+                .forEach(i -> CACHE.put(i, new LottoNumber(i)));
     }
 
-    public LottoNumber(int value) {
-        validateRange(value);
+    private LottoNumber(int value) {
         this.value = value;
+    }
+
+    public static LottoNumber valueOf(int value) {
+        validateRange(value);
+        return CACHE.get(value);
+    }
+
+    public static LottoNumber valueOf(String stringNumber) {
+        return valueOf(parse(stringNumber));
     }
 
     private static int parse(String stringNumber) {
@@ -23,7 +37,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
         }
     }
 
-    private void validateRange(int value) {
+    private static void validateRange(int value) {
         if (value < Constant.LOTTERY_MIN_VALUE || value > Constant.LOTTERY_MAX_VALUE) {
             throw new IllegalArgumentException("로또 번호는 1 - 45 범위 숫자만 가능합니다.");
         }

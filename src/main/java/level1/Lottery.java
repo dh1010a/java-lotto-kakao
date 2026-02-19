@@ -13,7 +13,7 @@ public class Lottery {
 
         List<LottoNumber> lottoNumbers = numbers.stream()
                 .distinct()
-                .map(LottoNumber::new)
+                .map(LottoNumber::valueOf)
                 .collect(Collectors.toCollection(ArrayList::new));
 
         validateSize(lottoNumbers);
